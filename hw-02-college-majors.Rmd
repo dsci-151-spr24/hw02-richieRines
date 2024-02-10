@@ -304,6 +304,7 @@ college_recent_grads %>%
   select(major, median, p25th, p75th) %>%
   arrange(desc(median))
 ```
+
 ***Geosciences, Environmental Science, Multi-Disciplinary Or General Science, Physiology, Communication Technologies, Neuroscience, Atmospheric Sciences And Meteorology, Miscellaneous Biology, Biology, Ecology, Zoology***
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
@@ -312,8 +313,29 @@ college_recent_grads %>%
 
 9.  Create a scatterplot of median income vs. proportion of women in that major, coloured by whether the major is in a STEM field or not. Describe the association between these three variables.
 
+```{r}
+college_recent_grads %>%
+  ggplot(aes(x = median, y = sharewomen, color = major_type)) +
+  geom_point()
+```
+
+***Many women tend to major in fields that are not stem-related. Those who do major in stem fields tend to have a higher median income as opposed to those who don't***
+
 ## Further exploration
 
 10. Ask a question of interest to you, and answer it using summary statistic(s) and/or visualization(s).
+
+## What is the unemployment rate of stem majors? What about non-stem majors?
+
+```{r}
+college_recent_grads %>%
+  ggplot(aes(x = unemployment_rate, fill = major_type)) +
+  geom_histogram(binwidth = 0.005) +
+  labs(x    = "Unemployment Rate",
+       y    = "Frequency",
+       fill = "Major Type")
+```
+
+***Looking at the histogram we can see that non-stem majors have a much hugher unemployment rate than stem related majors.***
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you're happy with the final state of your work.*
